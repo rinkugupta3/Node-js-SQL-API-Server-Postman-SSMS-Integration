@@ -1,0 +1,96 @@
+Node.js Scenarios for Generating HTTP Status Codes
+200 - OK
+Scenario: Successfully fetching data from the database.
+Route: GET /api/customers
+Example: Retrieve a list of customers, ensuring the query runs without errors.
+
+201 - Created
+Scenario: Successfully inserting a new customer into the database.
+Route: POST /api/customers
+Example: Add a new customer record, with the server returning a success message and the created resource.
+
+202 - Accepted
+Scenario: Request has been accepted for processing, but it may take time to complete.
+Route: POST /api/customers
+Example: Queueing a background job to process customer data, acknowledging acceptance without immediate completion.
+
+204 - No Content
+Scenario: Successfully processing a request that doesn’t return any content.
+Route: DELETE /api/customers/:id
+Example: Successfully delete a customer, with no data returned in response.
+
+400 - Bad Request
+Scenario: Sending incomplete or incorrect data to the server.
+Route: POST /api/customers
+Example: Attempt to create a customer with missing required fields, expecting a validation error.
+
+401 - Unauthorized
+Scenario: Accessing a protected route without proper authentication.
+Route: GET /api/protected-route
+Example: Attempt to access a route that requires an API token or login credentials without providing them.
+
+403 - Forbidden
+Scenario: Attempting an operation the user doesn’t have permission to perform.
+Route: DELETE /api/customers/:id
+Example: A user with read-only access tries to delete a customer, resulting in a forbidden error.
+
+404 - Not Found
+Scenario: Trying to fetch or modify a non-existent resource.
+Route: GET /api/customers/:id
+Example: Accessing a customer by ID that doesn’t exist in the database, expecting a "Not Found" response.
+
+405 - Method Not Allowed
+Scenario: Attempting to use an HTTP method not supported by the route.
+Route: PUT /api/customers
+Example: Using PUT on a collection route (e.g., updating all customers), which is disallowed, expecting a "Method Not Allowed" response.
+
+406 - Not Acceptable
+Scenario: Client requests a media format not supported by the server.
+Route: GET /api/customers
+Example: Requesting data in an unsupported format (e.g., XML when only JSON is supported), expecting a "Not Acceptable" response.
+
+409 - Conflict
+Scenario: Attempting to create a duplicate record.
+Route: POST /api/customers
+Example: Creating a customer with an email already in use, expecting a "Conflict" error.
+
+415 - Unsupported Media Type
+Scenario: Sending data in an unsupported format.
+Route: POST /api/customers
+Example: Attempting to upload customer data in an unsupported format, like XML instead of JSON.
+
+429 - Too Many Requests
+Scenario: Sending too many requests in a short period.
+Route: GET /api/customers
+Example: Exceeding rate limit, resulting in "Too Many Requests" response with a retry-after header.
+
+500 - Internal Server Error
+Scenario: A server error occurs, such as a SQL error or unhandled exception.
+Route: GET /api/customers/:id
+Example: Simulate a server error by causing a SQL exception, such as incorrect syntax or timeout.
+
+501 - Not Implemented
+Scenario: Accessing a route or method not yet implemented.
+Route: PATCH /api/customers/:id
+Example: Use a PATCH request if your API doesn’t yet support partial updates, triggering a "Not Implemented" error.
+
+502 - Bad Gateway
+Scenario: A server receives an invalid response from an upstream server.
+Route: External API requests
+Example: API requests to external services fail due to invalid or timeout responses, resulting in a "Bad Gateway" error.
+
+503 - Service Unavailable
+Scenario: The server is overloaded or under maintenance.
+Route: GET /api/customers
+Example: Simulate downtime or overload by blocking the route temporarily, resulting in a "Service Unavailable" response.
+
+504 - Gateway Timeout
+Scenario: An upstream server does not respond in time.
+Route: External API requests
+Example: Test response delay in an external API to simulate a "Gateway Timeout" response.
+
+505 - HTTP Version Not Supported
+Scenario: The server does not support the HTTP version used in the request.
+Route: Any route
+Example: Make requests with an outdated HTTP version, triggering the "HTTP Version Not Supported" response.
+

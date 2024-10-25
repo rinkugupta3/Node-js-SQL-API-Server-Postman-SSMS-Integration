@@ -165,4 +165,5 @@ Click Send to delete the customer with ID 1.
 Use the console logs in your Node.js application to debug and ensure everything is working correctly.
 Check Postman for the responses from your API requests.
 Conclusion
-You have successfully set up a Node.js project with SQL Server integration, created a REST API, and used Postman to interact with your API. This guide can be used as a reference for similar projects in the future.
+You have successfully set up a Node.js project with SQL Server integration, created a REST API,
+and used Postman to interact with API.
